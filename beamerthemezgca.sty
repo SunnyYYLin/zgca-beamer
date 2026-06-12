@@ -19,6 +19,15 @@
 
 \RequirePackage{graphicx,zgcacolor}
 
+% Math, CJK, and font dependencies
+\RequirePackage{amsfonts,amsmath,oldgerm}
+\RequirePackage{xeCJK}
+\usefonttheme[onlymath]{serif}
+
+% Helper macros
+\newcommand{\hrefcol}[2]{\textcolor{zgcayellow}{\href{#1}{#2}}}
+\newcommand{\testcolor}[1]{\colorbox{#1}{\textcolor{#1}{test}}~\texttt{#1}}
+
 % No navigation symbols
 \setbeamertemplate{navigation symbols}{}
 
