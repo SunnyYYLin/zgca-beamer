@@ -220,7 +220,6 @@
         \setbeamertemplate{headline}[default]
         \def\beamer@entrycode{\vspace*{-\headheight}}
     }{}
-\makeatother
 
 % Define chapter environment
 \newenvironment{chapter}[3][]{% Args: image (optional), color, frame title
@@ -243,7 +242,7 @@
     \end{beamercolorbox}
   }
   \begin{frame}[t,noframenumbering]{#3}
-  \vspace*{1ex}%
+  \vspace*{-0.8ex}%
   \hspace*{0.05\textwidth}%
   \minipage{0.35\textwidth}%
   \usebeamercolor[fg]{normal text}%
@@ -260,12 +259,18 @@
   \hspace*{0.6\paperwidth}%
   \includegraphics[height=\paperheight]{#1}%
   }
-  \setbeamertemplate{frametitle}{% Same as normal, but with right skip
-    \vspace*{-3.5ex}
-    \begin{beamercolorbox}[leftskip=1.2cm,rightskip=0.4\textwidth]{frametitle}%
-      \usebeamerfont{frametitle}\insertframetitle\\
-      \usebeamerfont{framesubtitle}\insertframesubtitle
-    \end{beamercolorbox}
+  \setbeamertemplate{frametitle}{% Same as normal, but with right skip and logo icon
+    \vspace*{-4.5ex}% Pull it up to sit perfectly in line with the top right logo
+    \begin{beamercolorbox}[rightskip=0.4\textwidth]{frametitle}%
+      \raisebox{-0.2\height}{\pgfuseimage{\@logoicon}}%
+      \hspace{0.2cm}%
+      \begin{minipage}[c][0.8cm][c]{0.55\paperwidth}%
+        \usebeamerfont{frametitle}\insertframetitle\\
+        \ifx\insertframesubtitle\@empty\else
+          {\usebeamerfont{framesubtitle}\insertframesubtitle}%
+        \fi
+      \end{minipage}%
+    \end{beamercolorbox}%
   }
   \begin{frame}{#2}
   \minipage{0.6\textwidth}%
@@ -315,11 +320,20 @@
     }
     \setbeamertemplate{headline}{}
     \begin{frame}[plain,noframenumbering]
-        \vspace{1.5cm}%
         \centering
-        \begin{minipage}{0.8\textwidth}
-            \usebeamercolor[fg]{structure}
-            \tableofcontents[currentsection]
+        \vspace{1cm}%
+        \begin{minipage}{12cm}
+            \setbeamercolor{block title}{fg=white, bg=maincolor}
+            \setbeamercolor{block body}{fg=darkgray, bg=zgcagrey}
+            \begin{block}{\large \bfseries 目录 \quad CONTENTS}
+                \vspace{0.3cm}
+                \usebeamercolor[fg]{normal text}
+                \setbeamercolor{section in toc}{fg=maincolor}
+                \setbeamercolor{section in toc shaded}{fg=gray}
+                \setbeamercolor{structure}{fg=maincolor}
+                \tableofcontents[currentsection]
+                \vspace{0.3cm}
+            \end{block}
         \end{minipage}
     \end{frame}
     \endgroup
@@ -329,7 +343,6 @@
 \setbeamertemplate{section in toc}{$\blacktriangleright$~\inserttocsection}
 
 % automate subtitle of each frame
-\makeatletter
     \pretocmd\beamer@checkframetitle{\framesubtitle{\thesection \, \secname}}
 \makeatother
 
