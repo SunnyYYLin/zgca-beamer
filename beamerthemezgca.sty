@@ -27,6 +27,15 @@
 % Helper macros
 \newcommand{\hrefcol}[2]{\textcolor{zgcayellow}{\href{#1}{#2}}}
 \newcommand{\testcolor}[1]{\colorbox{#1}{\textcolor{#1}{test}}~\texttt{#1}}
+% Helper macro to render the frame subtitle (always only section name inside sections)
+\newcommand{\zgca@rendersubtitle}{%
+  \ifnum\c@section>0 %
+    \thesection \, \secname%
+  \else%
+    \insertframesubtitle%
+  \fi%
+}
+
 
 % No navigation symbols
 \setbeamertemplate{navigation symbols}{}
@@ -135,7 +144,6 @@
   \end{beamercolorbox}%
 }
 
-% Define frame title and subtitle layout (aligned with paper plane logo)
 \setbeamertemplate{frametitle}{%
   \vspace*{-4.5ex}% Pull it up to sit perfectly in line with the top right logo
   \begin{beamercolorbox}{frametitle}%
@@ -143,9 +151,7 @@
     \hspace{0.2cm}%
     \begin{minipage}[c][0.8cm][c]{0.55\paperwidth}%
       \usebeamerfont{frametitle}\insertframetitle\\
-      \ifx\insertframesubtitle\@empty\else
-        {\usebeamerfont{framesubtitle}\insertframesubtitle}%
-      \fi
+      \usebeamerfont{framesubtitle}\zgca@rendersubtitle
     \end{minipage}%
   \end{beamercolorbox}%
 }
@@ -275,9 +281,7 @@
       \hspace{0.2cm}%
       \begin{minipage}[c][0.8cm][c]{0.55\paperwidth}%
         \usebeamerfont{frametitle}\insertframetitle\\
-        \ifx\insertframesubtitle\@empty\else
-          {\usebeamerfont{framesubtitle}\insertframesubtitle}%
-        \fi
+        \usebeamerfont{framesubtitle}\zgca@rendersubtitle
       \end{minipage}%
     \end{beamercolorbox}%
   }
@@ -351,8 +355,6 @@
 % style of section presented in the table of contents
 \setbeamertemplate{section in toc}{$\blacktriangleright$~\inserttocsection}
 
-% automate subtitle of each frame
-    \pretocmd\beamer@checkframetitle{\framesubtitle{\thesection \, \secname}}
 \makeatother
 
 % avoid numbering of frames that are breaked into multiply slides
