@@ -1,0 +1,166 @@
+\documentclass{beamer}
+\usepackage{amsfonts,amsmath,oldgerm}
+\usetheme{zgca}
+\usepackage{xeCJK}
+
+\newcommand{\testcolor}[1]{\colorbox{#1}{\textcolor{#1}{test}}~\texttt{#1}}
+
+\usefonttheme[onlymath]{serif}
+
+% Set the background image for the title slide (recolored building image)
+\titlebackground{assets/background}
+
+\newcommand{\hrefcol}[2]{\textcolor{zgcayellow}{\href{#1}{#2}}}
+
+\title{中关村学院 Beamer 模板展示}
+\subtitle{使用 LaTeX 制作学术报告演示文稿}
+\course{中关村学院卓越学术报告系列}
+\author{报告人：张三 \quad 导师：李四}
+\IDnumber{ZGCA-2026001}
+\date{2026 年 6 月 12 日}
+
+\begin{document}
+\maketitle
+
+\begin{frame}{模板简介}
+\framesubtitle{基于 ZGCA 视觉识别系统的学术幻灯片}
+
+本模板基于 \hrefcol{https://github.com/wzl-plasmid/ucas-beamer}{UCAS Beamer} 及 \hrefcol{https://www.overleaf.com/latex/templates/sintef-presentation/jhbhdffczpnx}{SINTEF Presentation} 衍生修改，专门适配了中关村学院的视觉标识（主题色：\texttt{\#0363c9}）。
+
+\vspace{\baselineskip}
+
+主要适配内容包括：
+\begin{itemize}
+    \item 结合中关村学院与中关村人工智能研究院的联合 logo 标识
+    \item 主题色变更为标准的中关村学院蓝色（\texttt{\#0363c9}）
+    \item 封面图和过渡页提取自学院 C5 大楼，并保留了原本的学院色彩与排版样式
+    \item 内页页眉及页脚设计，包含学院纸飞机 icon 及双 logo 边角装饰
+\end{itemize}
+
+\end{frame}
+
+\section{基本元素演示}
+
+\begin{frame}[fragile]{列表与强调}
+\framesubtitle{演示如何展示列表和高亮内容}
+
+我们可以方便地使用多种格式的列表和强调：
+\begin{itemize}[<+->]
+    \item 这是一个列表项，支持在演示中逐步淡入展现
+    \item 推荐使用 \verb|\alert{内容}| 来高亮需要引人注意的词语，例如：\alert{中关村学院}
+    \item 主题色相关的颜色宏定义在 \texttt{zgcacolor.sty} 包中，主要包括：
+    \begin{itemize}
+        \item 主题色：\testcolor{maincolor}
+        \item 辅助黄色：\testcolor{zgcayellow}（适用于 alert 文字）
+        \item 浅底填充色：\testcolor{zgcagrey}（适用于块环境背景）
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{学术数学公式支持}
+\framesubtitle{完美契合 LaTeX 的数学公式排版}
+
+Beamer 模板对数学公式的支持极其强大，模板自动集成了 serif 字体用于公式排版以确保其美观易读：
+
+\begin{equation}
+\mathrm{i}\,\hslash\frac{\partial}{\partial t} \Psi(\mathbf{r},t) =
+-\frac{\hslash^2}{2\,m}\nabla^2\Psi(\mathbf{r},t)
++ V(\mathbf{r})\Psi(\mathbf{r},t)
+\end{equation}
+
+\begin{block}{深度学习中的记忆与持续学习机制}
+持续学习（Continual Learning）旨在克服人工神经网络在学习新任务时对旧任务的“灾难性遗忘”（Catastrophic Forgetting）。数学表述可由正则化项引入：
+\begin{equation*}
+\mathcal{L}(\theta) = \mathcal{L}_B(\theta) + \sum_{i} \frac{\lambda}{2} F_i (\theta_i - \theta_{A,i}^*)^2
+\end{equation*}
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{卡片块设计 (Blocks)}
+\framesubtitle{利用块结构来区分不同类型的内容}
+
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\begin{block}{标准块 (Block)}
+这是最常用的块结构。块的头部使用主题色（标准蓝色），内容背景使用微蓝色的淡灰色。
+\small
+\begin{verbatim}
+\begin{block}{标题}
+内容...
+\end{block}
+\end{verbatim}
+\end{block}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+\begin{colorblock}[white]{maincolor}{全色块 (Colorblock)}
+头部和内容使用统一的主题色背景，文字为白色。适合放置一些非常核心的结论或公式。
+\small
+\begin{verbatim}
+\begin{colorblock}{颜色}{标题}
+内容...
+\end{colorblock}
+\end{verbatim}
+\end{colorblock}
+\end{column}
+\end{columns}
+\end{frame}
+
+\section{高级版式与个人化}
+
+\footlinecolor{maincolor}
+\begin{frame}[fragile]{切换底部栏底色}
+\framesubtitle{为特定页面改变版式风格}
+
+\begin{itemize}
+    \item 默认情况下，幻灯片采用透明底部栏，页面清爽大气
+    \item 可以使用 \verb|\footlinecolor{颜色}| 来为特定的页面添加带底色的底部栏
+    \item 例如本页的底部栏已经被设置为了：\testcolor{maincolor}
+    \item 若要恢复默认的无底色状态，请在下一页的 \verb|frame| 之前执行：\verb|\footlinecolor{}|
+\end{itemize}
+
+\begin{block}{注意事项}
+请勿在 \verb|themecolor{main}|（即全黑/全主题色幻灯片）中改变页脚颜色。
+\end{block}
+\end{frame}
+
+\footlinecolor{}
+\begin{chapter}[assets/background]{maincolor}{过渡章节页展示}
+\begin{itemize}
+    \item 过渡章节页采用全主题色背景设计
+    \item 右侧可以使用半截裁剪的背景图进行点缀
+    \item 这一页采用 \texttt{\textbackslash begin\string{chapter\string}[图片]\string{背景色\string}\string{标题\string}} 环境创建
+\end{itemize}
+\end{chapter}
+
+\begin{sidepic}{assets/background}{侧图版式演示}
+\begin{itemize}
+    \item 侧图版式提供了左侧文字、右侧整版插图的经典设计
+    \item 这一页采用 \texttt{\textbackslash begin\string{sidepic\string}\string{图片\string}\string{标题\string}} 环境创建
+    \item 适合在幻灯片中插入相关的实物、图表或风景图
+\end{itemize}
+\end{sidepic}
+
+\begin{frame}{总结与展望}
+\framesubtitle{演示如何使用表格排版总结数据}
+
+\begin{table}
+\centering
+\begin{tabular}{lccc}
+\hline
+\textbf{指标} & \textbf{传统 PPT} & \textbf{UCAS Beamer} & \textbf{ZGCA Beamer (本模板)} \\
+\hline
+数学公式美观度 & 一般 & 极佳 & \textbf{极佳} \\
+视觉色彩一致性 & 难保持 & 较好 & \textbf{优秀 (适配 \#0363c9)} \\
+排版自动控制 & 手动调整 & 自动排版 & \textbf{自动排版} \\
+学院视觉契合度 & 低 & 较低 & \textbf{高度适配} \\
+\hline
+\end{tabular}
+\caption{演示文稿排版工具及模板对比}
+\end{table}
+
+\end{frame}
+
+\backmatter
+\end{document}
