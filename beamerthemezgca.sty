@@ -118,18 +118,18 @@
 
 % Put the logo in each slide's top area (headline)
 \setbeamertemplate{headline}{%
-  \vspace{0.4cm}%
+  \vspace{0.5cm}%
   \begin{beamercolorbox}[wd=\paperwidth,ht=0.8cm,dp=0.2cm]{headline}
     \hfill%
     \pgfuseimage{\@logo}%
-    \hspace{0.05\paperwidth}%
+    \hspace*{0.06\paperwidth}%
   \end{beamercolorbox}%
 }
 
 % Define frame title and subtitle layout (aligned with paper plane logo)
 \setbeamertemplate{frametitle}{%
   \vspace*{-4.5ex}% Pull it up to sit perfectly in line with the top right logo
-  \begin{beamercolorbox}[leftskip=0.05\paperwidth]{frametitle}%
+  \begin{beamercolorbox}{frametitle}%
     \raisebox{-0.2\height}{\pgfuseimage{\@logoicon}}%
     \hspace{0.2cm}%
     \begin{minipage}[c][0.8cm][c]{0.55\paperwidth}%
@@ -209,7 +209,7 @@
     \end{beamercolorbox}%
   }
   \setbeamertemplate{footline}{}
-  \begin{frame}%
+  \begin{frame}[noframenumbering]%
   \titlepage%
   \end{frame}%
 \endgroup
@@ -242,7 +242,7 @@
       \usebeamerfont{framesubtitle}\insertframesubtitle
     \end{beamercolorbox}
   }
-  \begin{frame}{#3}
+  \begin{frame}[noframenumbering]{#3}
   \hspace*{0.05\textwidth}%
   \minipage{0.35\textwidth}%
   \usebeamercolor[fg]{normal text}%
@@ -289,7 +289,7 @@
       \hfill%
     \end{beamercolorbox}%
   }
-  \begin{frame}[plain,c]
+  \begin{frame}[plain,c,noframenumbering]
     \centering
     \begin{minipage}{\textwidth}
       \usebeamercolor[fg]{normal text}
@@ -313,7 +313,7 @@
       \includegraphics[width=\paperwidth,height=\paperheight]{assets/background_negative}
     }
     \setbeamertemplate{headline}{}
-    \begin{frame}[plain]
+    \begin{frame}[plain,noframenumbering]
         \vspace{1.5cm}%
         \centering
         \begin{minipage}{0.8\textwidth}
