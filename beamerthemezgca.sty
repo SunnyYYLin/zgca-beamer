@@ -122,7 +122,7 @@
   \begin{beamercolorbox}[wd=\paperwidth,ht=0.8cm,dp=0.2cm]{headline}
     \hfill%
     \pgfuseimage{\@logo}%
-    \hspace*{0.06\paperwidth}%
+    \hspace*{0.02\paperwidth}%
   \end{beamercolorbox}%
 }
 
@@ -236,13 +236,14 @@
   }
   \ifstrempty{#1}{}{\setbeamertemplate{background}{\TikzSplitSlide{#1}}}
   \setbeamertemplate{frametitle}{%
-    \vspace*{8ex}
+    \vspace*{4ex}
     \begin{beamercolorbox}[wd=0.45\textwidth]{frametitle}
       \usebeamerfont{frametitle}\insertframetitle\\
       \usebeamerfont{framesubtitle}\insertframesubtitle
     \end{beamercolorbox}
   }
-  \begin{frame}[noframenumbering]{#3}
+  \begin{frame}[t,noframenumbering]{#3}
+  \vspace*{1ex}%
   \hspace*{0.05\textwidth}%
   \minipage{0.35\textwidth}%
   \usebeamercolor[fg]{normal text}%
